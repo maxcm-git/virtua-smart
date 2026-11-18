@@ -36,7 +36,7 @@ const img = (name, alt, { sizes = '(min-width: 1024px) 628px, 640px', eager = fa
   `<img class="frame__img" src="/img/${name}.webp" srcset="/img/${name}-640.webp 640w, /img/${name}.webp 1280w" sizes="${sizes}" width="${DIMS(name)[0]}" height="${DIMS(name)[1]}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"'} data-source="client" data-subject="${esc(alt)}"${attrs}>`;
 
 const playBtn = (id, label) =>
-  `<button class="ly-play" type="button" data-yt="${id}" aria-label="${esc(label)}"><span class="ly-play__disc"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 2.2v13.6L15.5 9z" fill="currentColor"/></svg></span></button>`;
+  `<button class="yt-play" type="button" data-yt="${id}" aria-label="${esc(label)}"><span class="ly-play__disc"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 2.2v13.6L15.5 9z" fill="currentColor"/></svg></span></button>`;
 
 // A video card: its title above, the client's still with a play disc; YouTube loads only on click (site.js).
 const videoCard = (t, lang, id, label) => {

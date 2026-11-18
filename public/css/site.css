@@ -91,3 +91,10 @@
   main section[data-moment="pinned-chapters"]:not(.is-live) .mo-pc__visual > img { aspect-ratio: 10 / 9; max-height: none; }
   main > section[data-moment="pinned-chapters"][data-moment]:not(.is-live) { min-height: calc(2 * 100lvh); }
 }
+
+/* the YouTube play control covers the whole still (one big target), its disc in the middle; our own class, since
+   layout.js hides a .ly-play button that has no local film */
+.yt-play { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; }
+.yt-play:focus-visible { outline: 2px solid var(--action); outline-offset: -4px; }
+.yt-play:hover .ly-play__disc, .yt-play:focus-visible .ly-play__disc { transform: scale(1.06); }
+.yt-play .ly-play__disc { box-shadow: 0 2px 12px rgb(0 0 0 / .18); }
