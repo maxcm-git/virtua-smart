@@ -123,3 +123,6 @@ main > section:not(.hero):nth-of-type(even) { background: var(--p-surface); }
    and the peek photograph stretches to the list beside it */
 main > section:not(.hero) .wrap > .fill { flex: none; }
 @media (min-width: 1024px) { [data-peek] .frame--fill { align-self: stretch; height: auto; min-height: 480px; } }
+
+/* the motion design hero is a whole illustration on its own cream ground: shown entire, never cropped */
+.hero__media > img.motion-hero { object-fit: contain; background: #fbf4e9; }

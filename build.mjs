@@ -388,7 +388,6 @@ ${footer(lang, 'examples', t, r('contact') + '#demo')}`;
 function motionPage(lang) {
   const t = content[lang], m = t.motionPage, r = k => routes[k][lang];
   const groups = Object.entries(m.groups);
-  const hero = vimeoVideos.find(v => v.id === '1074254836'); // the newest film leads the page; its 1280px still exists only for it
   const card = v => `<article class="card card--open span-4">
           <h3>${v.title}</h3>
           <div class="panel video"><img class="frame__img" src="/img/motion/${v.id}.webp" width="640" height="360" alt="${esc(v.title)}" loading="lazy" decoding="async" data-source="client" data-subject="${esc(v.title)}">${playBtn(v.id, `${t.ui.play} : ${v.title}`, 'vimeo')}</div>
@@ -411,7 +410,7 @@ ${nav(lang, 'motion', t)}
         <div class="btn-row"><a class="btn btn--primary" href="${r('contact')}">${t.ui.cta}${arrow}</a><a class="btn btn--secondary" href="#brands">${m.second}</a></div>
       </div>
       <div class="hero__media span-6 start-7">
-        <img src="/img/motion/${hero.id}-1280.webp" width="1280" height="720" alt="${esc(m.heroAlt)}" fetchpriority="high" data-source="client" data-subject="${esc(m.heroAlt)}" style="--ly-pos: 50% 50%">
+        <img class="motion-hero" src="/img/motion-hero.webp" srcset="/img/motion-hero-640.webp 640w, /img/motion-hero.webp 1122w" sizes="(min-width: 1024px) 628px, 100vw" width="1122" height="1402" alt="${esc(m.heroAlt)}" fetchpriority="high" data-source="client" data-subject="${esc(m.heroAlt)}">
       </div>
     </div></div>
   </section>
