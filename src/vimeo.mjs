@@ -3,7 +3,7 @@
 export const vimeoVideos = [
  {
   "id": "896814298",
-  "title": "Unibail-Rodamco-Westfield Vœux 2024",
+  "title": "Unibail-Rodamco-Westfield Vœux",
   "date": "2023-12-21",
   "secs": 19,
   "group": "brands"
@@ -122,14 +122,14 @@ export const vimeoVideos = [
  },
  {
   "id": "150521719",
-  "title": "Magellan Partners - Voeux 2016",
+  "title": "Magellan Partners - Vœux",
   "date": "2016-01-02",
   "secs": 47,
   "group": "identities"
  },
  {
   "id": "150521707",
-  "title": "RCI Banque - Voeux 2016",
+  "title": "RCI Banque - Vœux",
   "date": "2016-01-02",
   "secs": 44,
   "group": "identities"

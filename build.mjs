@@ -151,7 +151,7 @@ function footer(lang, key, t, closeHref) {
   const r = k => routes[k][lang];
   const home = key === 'home' ? '' : r('home');
   const id = t.nav.ids, c = t.home.close, ex = t.examples;
-  return `<footer class="footer closing g2m" id="contact" aria-labelledby="close-h">
+  return `<footer class="footer closing footer--dark ground-inverse" id="contact" aria-labelledby="close-h">
   <div class="wrap">
     <div class="closing__cta close--type">
       <div class="section-head">
@@ -411,7 +411,7 @@ ${nav(lang, 'motion', t)}
         <div class="btn-row"><a class="btn btn--primary" href="${r('contact')}">${t.ui.cta}${arrow}</a><a class="btn btn--secondary" href="#brands">${m.second}</a></div>
       </div>
       <div class="hero__media span-6 start-7">
-        <img src="/img/motion/${hero.id}-1280.webp" width="1280" height="720" alt="${esc(m.heroAlt)}" fetchpriority="high" data-source="client" data-subject="${esc(m.heroAlt)}" style="--ly-pos: 50% 50%">${playBtn(hero.id, `${t.ui.play} : ${hero.title}`, 'vimeo')}
+        <img src="/img/motion/${hero.id}-1280.webp" width="1280" height="720" alt="${esc(m.heroAlt)}" fetchpriority="high" data-source="client" data-subject="${esc(m.heroAlt)}" style="--ly-pos: 50% 50%">
       </div>
     </div></div>
   </section>
@@ -420,7 +420,7 @@ ${groups.map(([g, [h2, lead]]) => `
     <div class="wrap">
       <div class="section-head"><h2 id="${g}-h">${h2}</h2><p>${lead}</p></div>
       <div class="grid">
-        ${vimeoVideos.filter(v => v.group === g && v !== hero).map(card).join('\n        ')}
+        ${vimeoVideos.filter(v => v.group === g).map(card).join('\n        ')}
       </div>
       ${g === 'tvArchive' ? `<p class="reel__more"><a class="link" href="${VIMEO}" rel="noopener">${m.vimeo}</a></p>` : ''}
     </div>

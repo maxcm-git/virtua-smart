@@ -73,7 +73,6 @@
 
 /* the tablet held upright: sections whose stacked content passes one screen take two */
 @media (min-width: 640px) and (max-width: 1023px) {
-  #questions, #perguntas { --h: 2; }
   #langues .grid > .card { grid-column: auto / span 4; }
 }
 
@@ -89,7 +88,6 @@
 /* pinned-chapters at rest on a phone: 4:3 pictures, and the section keeps its two screens so the next heading stays out */
 @media (max-width: 639px) {
   main section[data-moment="pinned-chapters"]:not(.is-live) .mo-pc__visual > img { aspect-ratio: 10 / 9; max-height: none; }
-  main > section[data-moment="pinned-chapters"][data-moment]:not(.is-live) { min-height: calc(2 * 100lvh); }
 }
 
 /* the YouTube play control covers the whole still (one big target), its disc in the middle; our own class, since
@@ -106,7 +104,22 @@
 @media (max-width: 639px) {
   .reel .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reel .grid > .card { grid-column: auto / span 1; }
-  .reel .card h3 { font-size: var(--t-small); line-height: 1.35; }
+  .reel .card h3 { font-size: var(--t-small); line-height: 1.35; min-height: 2.7em; }
+  .reel .panel.video { aspect-ratio: 16 / 9; }
   .reel .ly-play__disc { width: 40px; height: 40px; }
 }
 @media (min-width: 1024px) { .reel .grid > .card { grid-column: auto / span 3; } .reel .ly-play__disc { width: 52px; height: 52px; } }
+
+/* Client's choice over the kit's one-section-per-screen rule: every section below the hero is as tall as its
+   content, with moderate padding, and the sections alternate white and a discreet blue-grey ground. */
+:root { --padt: 96px; --padb: 96px; }
+@media (max-width: 639px) { :root { --padt: 64px; --padb: 64px; } }
+main > section:not(.hero):not(.is-live), footer.closing { height: auto; min-height: 0; }
+main > section[data-moment="pinned-chapters"][data-moment]:not(.is-live) { min-height: 0; }
+main > section:not(.hero):nth-of-type(even) { background: var(--p-surface); }
+/* the peek list's photograph, which filled a fixed-height section, keeps a 4:5 frame under the list below 1024 */
+@media (max-width: 1023px) { [data-peek].grid.fill > .frame--fill { flex: none; height: auto; aspect-ratio: 4 / 5; } [data-peek] .frame--fill > .frame__img { height: 100%; object-fit: cover; } }
+/* a .fill grid took the rest of a fixed-height section; with content-height sections it sizes to its content,
+   and the peek photograph stretches to the list beside it */
+main > section:not(.hero) .wrap > .fill { flex: none; }
+@media (min-width: 1024px) { [data-peek] .frame--fill { align-self: stretch; height: auto; min-height: 480px; } }
