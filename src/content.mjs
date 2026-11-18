@@ -11,6 +11,7 @@ export const routes = {
   examples: { fr: '/exemples/',        en: '/en/examples/', pt: '/pt/exemplos/' },
   contact:  { fr: '/contact/',         en: '/en/contact/',  pt: '/pt/contato/' },
   privacy:  { fr: '/confidentialite/', en: '/en/privacy/',  pt: '/pt/privacidade/' },
+  motion:   { fr: '/motion-design/', en: '/en/motion-design/', pt: '/pt/motion-design/' },
   legal:    { fr: '/mentions-legales/', en: '/en/legal-notice/', pt: '/pt/aviso-legal/' },
 };
 
@@ -33,7 +34,7 @@ export const content = {
       versions: { fr: 'La vidéo en français', en: 'La vidéo en anglais', pt: 'La vidéo en portugais' },
     },
     nav: {
-      offer: 'Offre', method: 'Méthode', examples: 'Exemples', agency: 'Agence', contact: 'Contact',
+      offer: 'Offre', method: 'Méthode', examples: 'Exemples', motion: 'Motion design', agency: 'Agence', contact: 'Contact',
       ids: { offer: 'offre', method: 'methode', agency: 'agence', faq: 'questions' },
       menu: {
         formats: 'Formats',
@@ -142,7 +143,7 @@ export const content = {
       motion: {
         id: 'motion-design', h2: 'Motion design pour vos vidéos',
         lead: 'Graphiques animés, chiffres clés, schémas simples et mots clés accompagnent le discours du gérant et rendent lisibles des messages complexes.',
-        link: 'Voir nos projets sur Vimeo',
+        link: 'Voir les 50 réalisations',
         alt: 'Un monteur assemble la vidéo du gérant avec des graphiques animés',
       },
     },
@@ -159,6 +160,7 @@ export const content = {
         reply: 'Nous vous répondons par email. Vos données servent uniquement à vous répondre.',
       },
     },
+    motionPage: {"title": "Motion design et habillage TV : 50 réalisations | VirtuaSmart", "description": "Films de marque, logos animés et habillages d’antenne réalisés depuis 2011 pour Edenred, EDF, Castorama, M6, W9 ou Fun Radio. 50 vidéos à regarder.", "crumb": "Motion design", "kicker": "50 réalisations depuis 2011", "h1": "Motion design et habillage TV", "lead": "Films de marque pour Edenred, EDF ou Dacia, habillages d’antenne pour M6, W9 et Fun Radio : le savoir-faire qui anime aujourd’hui vos vidéos d’avatar.", "second": "Voir les films de marque", "heroAlt": "Générique des 15 ans de Scènes de Ménages", "groups": {"brands": ["Films de marque et identités, 2023", "Films de marque, identités animées et bandes-annonces pour des groupes cotés et des institutions."], "identities": ["Logos animés et vœux d’entreprise", "Logos animés, vœux et présentations de 2014 à 2021, de Cromology à Atos."], "tv": ["Habillage TV et radio, 2023 à 2025", "Génériques, pastilles et habillages d’antenne pour M6, W9, Gulli et Fun Radio."], "tvArchive": ["Génériques et spots TV, 2011 à 2021", "Génériques, bandes-annonces et spots pour M6, W9, RTL2 et Public Sénat."]}, "vimeo": "Voir la vitrine sur Vimeo"},
     legal: {"title": "Mentions légales | VirtuaSmart", "description": "Éditeur, hébergeur et propriété intellectuelle du site virtua-smart.com.", "h1": "Mentions légales", "blocks": [["Éditeur du site", "VirtuaSmart, entreprise individuelle de Maximilien Chanu (micro-entrepreneur). SIRET 501 109 201 00035. Contact : contact@virtua-smart.com."], ["Directeur de la publication", "Maximilien Chanu."], ["Hébergeur", "GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (GitHub Pages)."], ["Propriété intellectuelle", "Les vidéos, avatars, images et textes de ce site appartiennent à VirtuaSmart. Toute reproduction sans accord écrit est interdite."]]},
     privacy: {
       title: 'Confidentialité | VirtuaSmart',
@@ -180,7 +182,7 @@ export const content = {
       versions: { fr: 'The video in French', en: 'The video in English', pt: 'The video in Portuguese' },
     },
     nav: {
-      offer: 'Services', method: 'Method', examples: 'Examples', agency: 'Agency', contact: 'Contact',
+      offer: 'Services', method: 'Method', examples: 'Examples', motion: 'Motion design', agency: 'Agency', contact: 'Contact',
       ids: { offer: 'services', method: 'method', agency: 'agency', faq: 'questions' },
       menu: {
         formats: 'Formats',
@@ -289,7 +291,7 @@ export const content = {
       motion: {
         id: 'motion-design', h2: 'Motion design for your videos',
         lead: 'Animated charts, key figures, simple diagrams and keywords support the manager’s words and make complex messages easy to follow.',
-        link: 'See our projects on Vimeo',
+        link: 'See the 50 projects',
         alt: 'An editor assembles the manager’s video with animated charts',
       },
     },
@@ -306,6 +308,7 @@ export const content = {
         reply: 'We reply by email. Your details are used only to answer you.',
       },
     },
+    motionPage: {"title": "Motion design and TV graphics: 50 projects | VirtuaSmart", "description": "Brand films, animated logos and on-air graphics made since 2011 for Edenred, EDF, Castorama, M6, W9 and Fun Radio. 50 videos to watch.", "crumb": "Motion design", "kicker": "50 projects since 2011", "h1": "Motion design and TV graphics", "lead": "Brand films for Edenred, EDF and Dacia, on-air graphics for M6, W9 and Fun Radio: the craft that now drives your avatar videos.", "second": "See the brand films", "heroAlt": "Opening titles for the 15th anniversary of Scènes de Ménages", "groups": {"brands": ["Brand films and identities, 2023", "Brand films, animated identities and trailers for listed groups and institutions."], "identities": ["Animated logos and corporate greetings", "Animated logos, greetings and presentations from 2014 to 2021, from Cromology to Atos."], "tv": ["TV and radio graphics, 2023 to 2025", "Opening titles, idents and on-air graphics for M6, W9, Gulli and Fun Radio."], "tvArchive": ["TV titles and spots, 2011 to 2021", "Opening titles, trailers and spots for M6, W9, RTL2 and Public Sénat."]}, "vimeo": "See the showcase on Vimeo"},
     legal: {"title": "Legal notice | VirtuaSmart", "description": "Publisher, host and intellectual property of the virtua-smart.com website.", "h1": "Legal notice", "blocks": [["Publisher", "VirtuaSmart, sole proprietorship of Maximilien Chanu (French micro-entrepreneur). SIRET 501 109 201 00035. Contact: contact@virtua-smart.com."], ["Publication director", "Maximilien Chanu."], ["Host", "GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (GitHub Pages)."], ["Intellectual property", "The videos, avatars, images and texts on this site belong to VirtuaSmart. Any reproduction without written consent is prohibited."]]},
     privacy: {
       title: 'Privacy | VirtuaSmart',
@@ -327,7 +330,7 @@ export const content = {
       versions: { fr: 'O vídeo em francês', en: 'O vídeo em inglês', pt: 'O vídeo em português' },
     },
     nav: {
-      offer: 'Oferta', method: 'Método', examples: 'Exemplos', agency: 'Agência', contact: 'Contato',
+      offer: 'Oferta', method: 'Método', examples: 'Exemplos', motion: 'Motion design', agency: 'Agência', contact: 'Contato',
       ids: { offer: 'oferta', method: 'metodo', agency: 'agencia', faq: 'perguntas' },
       menu: {
         formats: 'Formatos',
@@ -436,7 +439,7 @@ export const content = {
       motion: {
         id: 'motion-design', h2: 'Motion design para seus vídeos',
         lead: 'Gráficos animados, números-chave, diagramas simples e palavras-chave acompanham a fala do gestor e tornam claras mensagens complexas.',
-        link: 'Ver nossos projetos no Vimeo',
+        link: 'Ver os 50 projetos',
         alt: 'Um editor monta o vídeo do gestor com gráficos animados',
       },
     },
@@ -453,6 +456,7 @@ export const content = {
         reply: 'Respondemos por email. Seus dados servem apenas para responder a você.',
       },
     },
+    motionPage: {"title": "Motion design e grafismo para TV: 50 projetos | VirtuaSmart", "description": "Filmes de marca, logos animados e grafismo de emissora feitos desde 2011 para Edenred, EDF, Castorama, M6, W9 e Fun Radio. 50 vídeos para assistir.", "crumb": "Motion design", "kicker": "50 projetos desde 2011", "h1": "Motion design e grafismo para TV", "lead": "Filmes de marca para Edenred, EDF e Dacia, grafismo de emissora para M6, W9 e Fun Radio: o know-how que hoje anima seus vídeos com avatar.", "second": "Ver os filmes de marca", "heroAlt": "Abertura dos 15 anos de Scènes de Ménages", "groups": {"brands": ["Filmes de marca e identidades, 2023", "Filmes de marca, identidades animadas e trailers para grupos de capital aberto e instituições."], "identities": ["Logos animados e votos corporativos", "Logos animados, votos e apresentações de 2014 a 2021, da Cromology à Atos."], "tv": ["Grafismo de TV e rádio, 2023 a 2025", "Aberturas, vinhetas e grafismo de emissora para M6, W9, Gulli e Fun Radio."], "tvArchive": ["Aberturas e spots de TV, 2011 a 2021", "Aberturas, trailers e spots para M6, W9, RTL2 e Public Sénat."]}, "vimeo": "Ver a vitrine no Vimeo"},
     legal: {"title": "Aviso legal | VirtuaSmart", "description": "Editor, hospedagem e propriedade intelectual do site virtua-smart.com.", "h1": "Aviso legal", "blocks": [["Editor do site", "VirtuaSmart, empresa individual de Maximilien Chanu (microempresário francês). SIRET 501 109 201 00035. Contato: contact@virtua-smart.com."], ["Diretor de publicação", "Maximilien Chanu."], ["Hospedagem", "GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (GitHub Pages)."], ["Propriedade intelectual", "Os vídeos, avatares, imagens e textos deste site pertencem à VirtuaSmart. É proibida qualquer reprodução sem autorização por escrito."]]},
     privacy: {
       title: 'Privacidade | VirtuaSmart',

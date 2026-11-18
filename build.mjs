@@ -3,6 +3,7 @@
 import { writeFile, mkdir, cp, rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { LANGS, routes, content, videos, VIMEO } from './src/content.mjs';
+import { vimeoVideos } from './src/vimeo.mjs';
 
 const SITE = 'https://virtua-smart.com';
 // The contact form posts here (Formspree, Web3Forms, Basin...). Empty: the form falls back to mailto.
@@ -35,8 +36,9 @@ const DIMS = name => /^(hero|offre-)/.test(name) ? [1280, 1600] : /^(etape-|plat
 const img = (name, alt, { sizes = '(min-width: 1024px) 628px, 640px', eager = false, attrs = '' } = {}) =>
   `<img class="frame__img" src="/img/${name}.webp" srcset="/img/${name}-640.webp 640w, /img/${name}.webp 1280w" sizes="${sizes}" width="${DIMS(name)[0]}" height="${DIMS(name)[1]}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"'} data-source="client" data-subject="${esc(alt)}"${attrs}>`;
 
-const playBtn = (id, label) =>
-  `<button class="yt-play" type="button" data-yt="${id}" aria-label="${esc(label)}"><span class="ly-play__disc"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 2.2v13.6L15.5 9z" fill="currentColor"/></svg></span></button>`;
+// data-yt: a YouTube id; data-vimeo: a Vimeo id. site.js swaps the still for the player on click.
+const playBtn = (id, label, provider = 'yt') =>
+  `<button class="yt-play" type="button" data-${provider}="${id}" aria-label="${esc(label)}"><span class="ly-play__disc"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 2.2v13.6L15.5 9z" fill="currentColor"/></svg></span></button>`;
 
 // A video card: its title above, the client's still with a play disc; YouTube loads only on click (site.js).
 const videoCard = (t, lang, id, label) => {
@@ -127,6 +129,7 @@ function nav(lang, key, t) {
       </div>
       <div class="nav__item"><a class="nav__link" href="${home}#${id.method}">${t.nav.method}</a></div>
       <div class="nav__item"><a class="nav__link" href="${r('examples')}"${cur('examples')}>${t.nav.examples}</a></div>
+      <div class="nav__item"><a class="nav__link" href="${r('motion')}"${cur('motion')}>${t.nav.motion}</a></div>
       <div class="nav__item"><a class="nav__link" href="${home}#${id.agency}">${t.nav.agency}</a></div>
       <div class="nav__item"><a class="nav__link" href="${r('contact')}"${cur('contact')}>${t.nav.contact}</a></div>
     </nav>
@@ -165,7 +168,7 @@ function footer(lang, key, t, closeHref) {
         </div>
         <div class="span-2 footer__col"><h3>${t.nav.offer}</h3><ul>${t.nav.menu.items.map(([a]) => `<li><a href="${home}#${id.offer}">${a}</a></li>`).join('')}</ul></div>
         <div class="span-2 footer__col"><h3>${t.nav.method}</h3><ul><li><a href="${home}#${id.method}">${t.home.method.steps[0][0]}</a></li><li><a href="${home}#${id.faq}">${t.home.faq.h2.split(' ')[0]}</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>${t.nav.examples}</h3><ul><li><a href="${r('examples')}#${ex.welcome.id}">${ex.welcome.h2.split(',')[0]}</a></li><li><a href="${r('examples')}#${ex.ad.id}">${t.home.offer.rows[3][0]}</a></li><li><a href="${VIMEO}" rel="noopener">${t.footer.motion}</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>${t.nav.examples}</h3><ul><li><a href="${r('examples')}#${ex.welcome.id}">${ex.welcome.h2.split(',')[0]}</a></li><li><a href="${r('examples')}#${ex.ad.id}">${t.home.offer.rows[3][0]}</a></li><li><a href="${r('motion')}">${t.footer.motion}</a></li></ul></div>
         <div class="span-2 footer__col"><h3>${t.nav.agency}</h3><ul><li><a href="${home}#${id.agency}">${t.nav.agency}</a></li><li><a href="${r('contact')}">${t.nav.contact}</a></li></ul></div>
       </div>
       <div class="footer__legal">
@@ -278,7 +281,7 @@ ${nav(lang, 'home', t)}
         <dl class="facts">
           ${h.agency.facts.map(([n, l]) => `<div><dt>${l}</dt><dd>${n}</dd></div>`).join('')}
         </dl>
-        <p><a class="link" href="${VIMEO}" rel="noopener">${h.agency.link}</a></p>
+        <p><a class="link" href="${r('motion')}">${h.agency.link}</a></p>
       </div>
       <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="/img/plateau.webp" srcset="/img/plateau-640.webp 640w, /img/plateau.webp 1280w" sizes="(min-width: 1024px) 628px, 100vw" alt="${esc(h.agency.alt)}" width="1280" height="956" loading="lazy" decoding="async" data-source="client" data-subject="${esc(h.agency.alt)}"></figure>
     </div>
@@ -372,7 +375,7 @@ ${nav(lang, 'examples', t)}
     <div class="wrap grid grid--top">
       <div class="span-5">
         <div class="section-head"><h2 id="motion-h">${e.motion.h2}</h2><p>${e.motion.lead}</p></div>
-        <p><a class="link" href="${VIMEO}" rel="noopener">${e.motion.link}</a></p>
+        <p><a class="link" href="${r('motion')}">${e.motion.link}</a></p>
       </div>
       <div class="frame frame--photo span-6 start-7 motion__frame">${img('etape-montage', e.motion.alt, { sizes: '(min-width: 1024px) 1280px, 640px' })}</div>
     </div>
@@ -380,6 +383,51 @@ ${nav(lang, 'examples', t)}
 </main>
 
 ${footer(lang, 'examples', t, r('contact') + '#demo')}`;
+}
+
+function motionPage(lang) {
+  const t = content[lang], m = t.motionPage, r = k => routes[k][lang];
+  const groups = Object.entries(m.groups);
+  const hero = vimeoVideos.find(v => v.id === '1074254836'); // the newest film leads the page; its 1280px still exists only for it
+  const card = v => `<article class="card card--open span-4">
+          <h3>${v.title}</h3>
+          <div class="panel video"><img class="frame__img" src="/img/motion/${v.id}.webp" width="640" height="360" alt="${esc(v.title)}" loading="lazy" decoding="async" data-source="client" data-subject="${esc(v.title)}">${playBtn(v.id, `${t.ui.play} : ${v.title}`, 'vimeo')}</div>
+        </article>`;
+  const videoLd = vimeoVideos.map(v => ({ '@context': 'https://schema.org', '@type': 'VideoObject', name: v.title, description: strip(m.groups[v.group][1]),
+    thumbnailUrl: `${SITE}/img/motion/${v.id}.webp`, uploadDate: v.date, duration: `PT${v.secs}S`,
+    embedUrl: `https://player.vimeo.com/video/${v.id}`, contentUrl: `https://vimeo.com/${v.id}` }));
+  return `${head(lang, 'motion', t, m, [crumbLd(lang, 'motion', m.crumb), ...videoLd])}
+<body>
+${deal}
+${nav(lang, 'motion', t)}
+
+<main id="top">
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-5">
+        <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>${m.kicker}</p>
+        <h1 id="hero-h">${m.h1}</h1>
+        <p class="hero__lead">${m.lead}</p>
+        <div class="btn-row"><a class="btn btn--primary" href="${r('contact')}">${t.ui.cta}${arrow}</a><a class="btn btn--secondary" href="#brands">${m.second}</a></div>
+      </div>
+      <div class="hero__media span-6 start-7">
+        <img src="/img/motion/${hero.id}-1280.webp" width="1280" height="720" alt="${esc(m.heroAlt)}" fetchpriority="high" data-source="client" data-subject="${esc(m.heroAlt)}" style="--ly-pos: 50% 50%">${playBtn(hero.id, `${t.ui.play} : ${hero.title}`, 'vimeo')}
+      </div>
+    </div></div>
+  </section>
+${groups.map(([g, [h2, lead]]) => `
+  <section class="section reel" id="${g === 'tvArchive' ? 'tv-archive' : g}" style="--h: 2; --hm: 2" aria-labelledby="${g}-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="${g}-h">${h2}</h2><p>${lead}</p></div>
+      <div class="grid">
+        ${vimeoVideos.filter(v => v.group === g && v !== hero).map(card).join('\n        ')}
+      </div>
+      ${g === 'tvArchive' ? `<p class="reel__more"><a class="link" href="${VIMEO}" rel="noopener">${m.vimeo}</a></p>` : ''}
+    </div>
+  </section>`).join('\n')}
+</main>
+
+${footer(lang, 'motion', t, r('contact') + '#demo')}`;
 }
 
 function contactPage(lang) {
@@ -444,7 +492,7 @@ ${footer(lang, key, t, r('contact') + '#demo')}`;
 
 // ---------- write ----------
 
-const pages = { home: homePage, examples: examplesPage, contact: contactPage, privacy: privacyPage, legal: lang => privacyPage(lang, 'legal') };
+const pages = { home: homePage, examples: examplesPage, motion: motionPage, contact: contactPage, privacy: privacyPage, legal: lang => privacyPage(lang, 'legal') };
 
 await rm(OUT, { recursive: true, force: true });
 await cp('public', OUT, { recursive: true });
